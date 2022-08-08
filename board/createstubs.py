@@ -1,312 +1,220 @@
-"""
-Create stubs for (all) modules on a MicroPython board
-Copyright (c) 2019-2020 Jos Verlinde
-"""
-import sys
-import gc
-import uos as os
-from utime import sleep_us
-from ujson import dumps
-ENOENT=2
-stubber_version='1.3.9'
-try:
- from machine import resetWDT 
-except ImportError:
- def resetWDT():
-  pass
-class Stubber():
- def __init__(self,path:str=None,firmware_id:str=None):
-  try:
-   if os.uname().release=='1.13.0' and os.uname().version<'v1.13-103':
-    raise NotImplementedError("MicroPython 1.13.0 cannot be stubbed")
-  except AttributeError:
-   pass
-  self._report=[]
-  self.info=self._info()
-  if firmware_id:
-   self._fwid=str(firmware_id).lower()
-  else:
-   self._fwid="{family}-{port}-{ver}".format(**self.info).lower()
-  self._start_free=gc.mem_free()
-  if path:
-   if path.endswith('/'):
-    path=path[:-1]
-  else:
-   path=self.get_root()
-  self.path="{}/stubs/{}".format(path,self.flat_fwid).replace('//','/')
-  try:
-   self.ensure_folder(path+"/")
-  except OSError:
-   pass
-  self.problematic=["upysh","webrepl_setup","http_client","http_client_ssl","http_server","http_server_ssl"]
-  self.excluded=["webrepl","_webrepl","port_diag","example_sub_led.py","example_pub_button.py"]
-  self.modules=['_onewire','_thread','_uasyncio','ak8963','apa102','apa106','array','binascii','btree','builtins','cmath','collections','crypto','curl','dht','display','ds18x20','errno','esp','esp32','flashbdev','framebuf','freesans20','functools','gc','gsm','hashlib','heapq','inisetup','io','json','lcd160cr','lcd160cr_test','logging','lwip','machine','math','microWebSocket','microWebSrv','microWebTemplate','micropython','mpu6500','mpu9250','neopixel','network','ntptime','onewire','os','pyb','pycom','pye','queue','random','re','requests','select','socket','ssd1306','ssh','ssl','stm','struct','sys','time','tpcalib','uarray','uasyncio/__init__','uasyncio/core','uasyncio/event','uasyncio/funcs','uasyncio/lock','uasyncio/stream','ubinascii','ubluetooth','ucollections','ucrypto','ucryptolib','uctypes','uerrno','uhashlib','uheapq','uio','ujson','ulab','ulab/approx','ulab/compare','ulab/fft','ulab/filter','ulab/linalg','ulab/numerical','ulab/poly','ulab/user','ulab/vector','umachine','umqtt/robust','umqtt/simple','uos','upip','upip_utarfile','uqueue','urandom','ure','urequests','urllib/urequest','uselect','usocket','ussl','ustruct','usys','utime','utimeq','uwebsocket','uzlib','websocket','websocket_helper','writer','ymodem','zlib']
-  self.include_nested=gc.mem_free()>3200 
- @staticmethod
- def _info():
-  info={'name':sys.implementation.name,'release':'0.0.0','version':'0.0.0','build':'','sysname':'unknown','nodename':'unknown','machine':'unknown','family':sys.implementation.name,'platform':sys.platform,'port':sys.platform,'ver':''}
-  try:
-   info['release']=".".join([str(i)for i in sys.implementation.version])
-   info['version']=info['release']
-   info['name']=sys.implementation.name
-   info['mpy']=sys.implementation.mpy
-  except AttributeError:
-   pass
-  if sys.platform not in('unix','win32'):
-   try:
-    u=os.uname()
-    info['sysname']=u.sysname
-    info['nodename']=u.nodename
-    info['release']=u.release
-    info['machine']=u.machine
-    if ' on ' in u.version:
-     s=u.version.split('on ')[0]
-     try:
-      info['build']=s.split('-')[1]
-     except IndexError:
-      pass
-   except(IndexError,AttributeError):
-    pass
-  try:
-   from pycopy import const
-   info['family']='pycopy'
-   del const
-  except(ImportError,KeyError):
-   pass
-  if info['platform']=='esp32_LoBo':
-   info['family']='loboris'
-   info['port']='esp32'
-  info['ver']='v'+info['release']
-  if info['family']!='loboris':
-   if info['release']>='1.10.0' and info['release'].endswith('.0'):
-    info['ver']=info['release'][:-2]
-   else:
-    info['ver']=info['release']
-   if info['build']!='':
-    info['ver']+='-'+info['build']
-  if 'mpy' in info: 
-   sys_mpy=info['mpy']
-   arch=[None,'x86','x64','armv6','armv6m','armv7m','armv7em','armv7emsp','armv7emdp','xtensa','xtensawin'][sys_mpy>>10]
-   if arch:
-    info['arch']=arch
-  return info
- def get_obj_attributes(self,obj:object):
-  result=[]
-  errors=[]
-  name=None
-  try:
-   for name in dir(obj):
-    try:
-     val=getattr(obj,name)
-     result.append((name,repr(val),repr(type(val)),val))
-    except AttributeError as e:
-     errors.append("Couldn't get attribute '{}' from object '{}', Err: {}".format(name,obj,e))
-  except AttributeError as e:
-   errors.append("Couldn't get attribute '{}' from object '{}', Err: {}".format(name,obj,e))
-  gc.collect()
-  return result,errors
- def add_modules(self,modules:list):
-  self.modules=sorted(set(self.modules)|set(modules))
- def create_all_stubs(self):
-  self.modules=[m for m in self.modules if '/' in m]+[m for m in self.modules if '/' not in m]
-  gc.collect()
-  for module_name in self.modules:
-   if self.include_nested:
-    self.include_nested=gc.mem_free()>3200 
-   if module_name.startswith("_")and module_name!='_thread':
-    continue
-   if module_name in self.problematic:
-    continue
-   if module_name in self.excluded:
-    continue
-   file_name="{}/{}.py".format(self.path,module_name.replace(".","/"))
-   gc.collect()
-   m1=gc.mem_free()
-   print("Stub module: {:<20} to file: {:<55} mem:{:>5}".format(module_name,file_name,m1))
-   try:
-    self.create_module_stub(module_name,file_name)
-   except OSError:
-    pass
-   gc.collect()
- def create_module_stub(self,module_name:str,file_name:str=None):
-  if module_name.startswith("_")and module_name!='_thread':
-   return
-  if module_name in self.problematic:
-   return
-  if '/' in module_name:
-   self.ensure_folder(file_name)
-   module_name=module_name.replace('/','.')
-   if not self.include_nested:
-    return
-  if file_name is None:
-   file_name=module_name.replace('.','_')+".py"
-  failed=False
-  new_module=None
-  try:
-   new_module=__import__(module_name,None,None,('*'))
-  except ImportError:
-   failed=True
-   if not '.' in module_name:
-    return
-  if failed and '.' in module_name:
-   levels=module_name.split('.')
-   for n in range(1,len(levels)):
-    parent_name=".".join(levels[0:n])
-    try:
-     parent=__import__(parent_name)
-     del parent
-    except(ImportError,KeyError):
-     pass
-   try:
-    new_module=__import__(module_name,None,None,('*'))
-   except ImportError:
-    return
-  with open(file_name,"w")as fp:
-   s="\"\"\"\nModule: '{0}' on {1}\n\"\"\"\n# MCU: {2}\n# Stubber: {3}\n".format(module_name,self._fwid,self.info,stubber_version)
-   fp.write(s)
-   self.write_object_stub(fp,new_module,module_name,"")
-   self._report.append({"module":module_name,"file":file_name})
-  if not module_name in["os","sys","logging","gc"]:
-   try:
-    del new_module
-   except(OSError,KeyError):
-    pass
-   try:
-    del sys.modules[module_name]
-   except KeyError:
-    pass
-   gc.collect()
- def write_object_stub(self,fp,object_expr:object,obj_name:str,indent:str):
-  if object_expr in self.problematic:
-   return
-  items,errors=self.get_obj_attributes(object_expr)
-  for name,rep,typ,obj in sorted(items,key=lambda x:x[0]):
-   if name.startswith("__"):
-    continue
-   resetWDT()
-   sleep_us(1)
-   if typ in["<class 'function'>","<class 'bound_method'>"]:
-    s=indent+"def "+name+"():\n" 
-    s+=indent+"    pass\n\n"
-    fp.write(s)
-   elif typ in["<class 'str'>","<class 'int'>","<class 'float'>"]:
-    s=indent+name+" = "+rep+"\n"
-    fp.write(s)
-   elif typ=="<class 'type'>" and indent=="":
-    s="\n"+indent+"class "+name+":\n" 
-    s+=indent+"    ''\n"
-    fp.write(s)
-    self.write_object_stub(fp,obj,"{0}.{1}".format(obj_name,name),indent+"    ")
-   else:
-    fp.write(indent+name+" = None\n")
-  del items
-  del errors
-  try:
-   del name,rep,typ,obj 
-  except(OSError,KeyError):
-   pass
- @property
- def flat_fwid(self):
-  s=self._fwid
-  chars=" .()/\\:$"
-  for c in chars:
-   s=s.replace(c,"_")
-  return s
- def clean(self,path:str=None):
-  if path is None:
-   path=self.path
-  print("Clean/remove files in folder: {}".format(path))
-  try:
-   items=os.listdir(path)
-  except(OSError,AttributeError):
-   return
-  for fn in items:
-   try:
-    item="{}/{}".format(path,fn)
-    os.remove(item)
-   except OSError:
-    try:
-     self.clean(item)
-     os.rmdir(item)
-    except OSError:
-     pass
- def report(self,filename:str="modules.json"):
-  f_name="{}/{}".format(self.path,filename)
-  gc.collect()
-  try:
-   with open(f_name,'w')as f:
-    f.write('{')
-    f.write(dumps({'firmware':self.info})[1:-1])
-    f.write(',')
-    f.write(dumps({'stubber':{'version':stubber_version}})[1:-1])
-    f.write(',')
-    f.write('"modules" :[')
-    start=True
-    for n in self._report:
-     if start:
-      start=False
-     else:
-      f.write(',')
-     f.write(dumps(n))
-    f.write(']}')
-   used=self._start_free-gc.mem_free()
-  except OSError:
-   pass
- def ensure_folder(self,path:str):
-  i=start=0
-  while i!=-1:
-   i=path.find('/',start)
-   if i!=-1:
-    if i==0:
-     p=path[0]
-    else:
-     p=path[0:i]
-    try:
-     _=os.stat(p)
-    except OSError as e:
-     if e.args[0]==ENOENT:
-      try:
-       os.mkdir(p)
-      except OSError as e2:
-       raise e2
-     else:
-      raise e
-   start=i+1
- @staticmethod
- def get_root()->str:
-  try:
-   r="/flash"
-   _=os.stat(r)
-  except OSError as e:
-   if e.args[0]==ENOENT:
-    try:
-     r=os.getcwd()
-    except:
-     r='.'
-   else:
-    r='/'
-  return r
-def show_help():
- sys.exit(1)
-def read_path()->str:
- path=None
- if len(sys.argv)==3:
-  cmd=(sys.argv[1]).lower()
-  if cmd in('--path','-p'):
-   path =sys.argv[2]
-  else:
-   show_help()
- elif len(sys.argv)>=2:
-  show_help()
- return path
-def main():
- try:
-  logging.basicConfig(level=logging.INFO)
- except NameError:
-  pass
- stubber=Stubber(path=read_path())
- stubber.clean()
- stubber.create_all_stubs()
- stubber.report()
-if __name__=="__main__":
- main()
+e='micropython'
+d='esp32'
+c='pyb'
+b='{}/{}'
+a='logging'
+Z='sys'
+Y=IndexError
+X=NameError
+W=print
+V=NotImplementedError
+T='platform'
+S='machine'
+P=True
+K='_'
+O='version'
+N=len
+M=KeyError
+L=ImportError
+I='.'
+H=AttributeError
+G=''
+F=False
+B='/'
+C=None
+E=OSError
+import sys,gc as D,uos as os
+from utime import sleep_us as f
+from ujson import dumps as J
+__version__='1.5.7'
+g=2
+h=2
+try:from machine import resetWDT as Q
+except L:
+	def Q():0
+class Stubber:
+	def __init__(A,path=C,firmware_id=C):
+		F=firmware_id;C=path
+		try:
+			if os.uname().release=='1.13.0'and os.uname().version<'v1.13-103':raise V('MicroPython 1.13.0 cannot be stubbed')
+		except H:pass
+		A._report=[];A.info=_info();D.collect()
+		if F:A._fwid=str(F).lower()
+		else:A._fwid='{family}-{ver}-{port}'.format(**A.info).lower()
+		A._start_free=D.mem_free()
+		if C:
+			if C.endswith(B):C=C[:-1]
+		else:C=get_root()
+		A.path='{}/stubs/{}'.format(C,A.flat_fwid).replace('//',B)
+		try:R(C+B)
+		except E:pass
+		A.problematic=['upip','upysh','webrepl_setup','http_client','http_client_ssl','http_server','http_server_ssl'];A.excluded=['webrepl','_webrepl','port_diag','example_sub_led.py','example_pub_button.py'];A.modules=[]
+	def get_obj_attributes(I,item_instance):
+		B=item_instance;A=[];F=[]
+		for C in dir(B):
+			try:E=getattr(B,C);A.append((C,repr(E),repr(type(E)),E))
+			except H as G:F.append("Couldn't get attribute '{}' from object '{}', Err: {}".format(C,B,G))
+		A=[B for B in A if not B[0].startswith(K)];D.collect();return A,F
+	def add_modules(A,modules):A.modules=sorted(set(A.modules)|set(modules))
+	def create_all_stubs(A):
+		D.collect()
+		for B in A.modules:A.create_one_stub(B)
+	def create_one_stub(C,module_name):
+		A=module_name
+		if A in C.problematic:return F
+		if A in C.excluded:return F
+		G='{}/{}.py'.format(C.path,A.replace(I,B));D.collect();J=D.mem_free();W('Stub module: {:<20} to file: {:<55} mem:{:>5}'.format(A,G,J));H=F
+		try:H=C.create_module_stub(A,G)
+		except E:return F
+		D.collect();return H
+	def create_module_stub(H,module_name,file_name=C):
+		J=file_name;A=module_name
+		if A in H.problematic:return F
+		if J is C:J=H.path+B+A.replace(I,K)+'.py'
+		if B in A:A=A.replace(B,I)
+		N=C
+		try:N=__import__(A,C,C,'*')
+		except L:return F
+		R(J)
+		with open(J,'w')as O:Q='"""\nModule: \'{0}\' on {1}\n"""\n# MCU: {2}\n# Stubber: {3}\n'.format(A,H._fwid,H.info,__version__);O.write(Q);O.write('from typing import Any\n\n');H.write_object_stub(O,N,A,G)
+		H._report.append({'module':A,'file':J})
+		if not A in['os',Z,a,'gc']:
+			try:del N
+			except (E,M):pass
+			try:del sys.modules[A]
+			except M:pass
+		D.collect();return P
+	def write_object_stub(K,fp,object_expr,obj_name,indent,in_class=0):
+		d='tuple';c='list';b='dict';a='{0}{1} = {2} # type: {3}\n';Z='bound_method';Y='Any';P=in_class;O=object_expr;L='Exception';I=fp;A=indent;D.collect()
+		if O in K.problematic:return
+		R,e=K.get_obj_attributes(O)
+		for (C,J,F,S) in R:
+			if C in['classmethod','staticmethod','BaseException',L]:continue
+			Q();f(1)
+			if F=="<class 'type'>"and N(A)<=h*4:
+				T=G;U=C.endswith(L)or C.endswith('Error')or C in['KeyboardInterrupt','StopIteration','SystemExit']
+				if U:T=L
+				B='\n{}class {}({}):\n'.format(A,C,T)
+				if U:B+=A+'    ...\n'
+				else:B+=A+'    def __init__(self, *argv, **kwargs) -> None:\n';B+=A+'        ...\n\n'
+				I.write(B);K.write_object_stub(I,S,'{0}.{1}'.format(obj_name,C),A+'    ',P+1)
+			elif'method'in F or'function'in F:
+				V=Y;W=G
+				if P>0:W='self, '
+				if Z in F or Z in J:B='{}@classmethod\n'.format(A);B+='{}def {}(cls, *args, **kwargs) -> {}:\n'.format(A,C,V)
+				else:B='{}def {}({}*args, **kwargs) -> {}:\n'.format(A,C,W,V)
+				B+=A+'    ...\n\n';I.write(B)
+			elif F=="<class 'module'>":0
+			elif F.startswith("<class '"):
+				H=F[8:-2];B=G
+				if H in['str','int','float','bool','bytearray','bytes']:B=a.format(A,C,J,H)
+				elif H in[b,c,d]:g={b:'{}',c:'[]',d:'()'};B=a.format(A,C,g[H],H)
+				else:
+					if not H in['object','set','frozenset']:H=Y
+					B='{0}{1} : {2} ## {3} = {4}\n'.format(A,C,H,F,J)
+				I.write(B)
+			else:I.write("# all other, type = '{0}'\n".format(F));I.write(A+C+' # type: Any\n')
+		del R;del e
+		try:del C,J,F,S
+		except (E,M,X):pass
+	@property
+	def flat_fwid(self):
+		A=self._fwid;B=' .()/\\:$'
+		for C in B:A=A.replace(C,K)
+		return A
+	def clean(D,path=C):
+		A=path
+		if A is C:A=D.path
+		W('Clean/remove files in folder: {}'.format(A))
+		try:F=os.listdir(A)
+		except (E,H):return
+		for G in F:
+			B=b.format(A,G)
+			try:os.remove(B)
+			except E:
+				try:D.clean(B);os.rmdir(B)
+				except E:pass
+	def report(B,filename='modules.json'):
+		H='firmware';C=',\n';I=b.format(B.path,filename);D.collect()
+		try:
+			with open(I,'w')as A:
+				A.write('{');A.write(J({H:B.info})[1:-1]);A.write(C);A.write(J({'stubber':{O:__version__},'stubtype':H})[1:-1]);A.write(C);A.write('"modules" :[\n');G=P
+				for K in B._report:
+					if G:G=F
+					else:A.write(C)
+					A.write(J(K))
+				A.write('\n]}')
+			L=B._start_free-D.mem_free()
+		except E:pass
+def R(path):
+	C=path;A=F=0
+	while A!=-1:
+		A=C.find(B,F)
+		if A!=-1:
+			if A==0:D=C[0]
+			else:D=C[0:A]
+			try:I=os.stat(D)
+			except E as G:
+				if G.args[0]==g:
+					try:os.mkdir(D)
+					except E as H:raise H
+				else:raise G
+		F=A+1
+def _info():
+	i=' on ';h='0.0.0';g='port';f='nodename';b='name';V='mpy';U='unknown';R='-';Q='sysname';K='v';J='family';F='build';D='ver';B='release';W=sys.implementation.name;X=sys.platform if not sys.platform.startswith(c)else'stm32';A={b:W,B:h,O:h,F:G,Q:U,f:U,S:U,J:W,T:X,g:X,D:G}
+	try:A[B]=I.join([str(A)for A in sys.implementation.version]);A[O]=A[B];A[b]=sys.implementation.name;A[V]=sys.implementation.mpy
+	except H:pass
+	if sys.platform not in('unix','win32'):
+		try:
+			E=os.uname();A[Q]=E.sysname;A[f]=E.nodename;A[B]=E.release;A[S]=E.machine
+			if i in E.version:
+				P=E.version.split(i)[0]
+				if A[Q]=='esp8266':
+					if R in P:Z=P.split(R)[0]
+					else:Z=P
+					A[O]=A[B]=Z.lstrip(K)
+				try:A[F]=P.split(R)[1]
+				except Y:pass
+		except (Y,H,TypeError):pass
+	try:from pycopy import const;A[J]='pycopy';del const
+	except (L,M):pass
+	if A[T]=='esp32_LoBo':A[J]='loboris';A[g]=d
+	elif A[Q]=='ev3':
+		A[J]='ev3-pybricks';A[B]='1.0.0'
+		try:from pybricks.hubs import EV3Brick;A[B]='2.0.0'
+		except L:pass
+	if A[B]:A[D]=K+A[B].lstrip(K)
+	if A[J]==e:
+		if A[B]and A[B]>='1.10.0'and A[B].endswith('.0'):A[D]=A[B][:-2]
+		else:A[D]=A[B]
+		if A[F]!=G and N(A[F])<4:A[D]+=R+A[F]
+	if A[D][0]!=K:A[D]=K+A[D]
+	if V in A:
+		j=int(A[V]);a=[C,'x86','x64','armv6','armv6m','armv7m','armv7em','armv7emsp','armv7emdp','xtensa','xtensawin'][j>>10]
+		if a:A['arch']=a
+	return A
+def get_root():
+	try:A=os.getcwd()
+	except (E,H):A=I
+	C=A
+	for C in [A,'/sd','/flash',B,I]:
+		try:D=os.stat(C);break
+		except E as F:continue
+	return C
+def A():sys.exit(1)
+def read_path():
+	B=G
+	if N(sys.argv)==3:
+		C=sys.argv[1].lower()
+		if C in('--path','-p'):B=sys.argv[2]
+		else:A()
+	elif N(sys.argv)==2:A()
+	return B
+def U():
+	try:A=bytes('abc',encoding='utf8');B=U.__module__;return F
+	except (V,H):return P
+def main():stubber=Stubber(path=read_path());stubber.clean();stubber.modules=['_onewire','_rp2','_thread','_uasyncio','aioble/__init__','aioble/central','aioble/client','aioble/core','aioble/device','aioble/l2cap','aioble/peripheral','aioble/server','ak8963','apa102','apa106','array','binascii','btree','cmath','crypto','curl','dht','display','display_driver_utils','ds18x20','errno','esp',d,'espidf','flashbdev','framebuf','freesans20','fs_driver','functools','gc','gsm','hashlib','heapq','ili9341','ili9XXX','imagetools','inisetup','json','lcd160cr','lodepng',a,'lsm6dsox','lv_colors','lv_utils','lvgl','lwip',S,'math','microWebSocket','microWebSrv','microWebTemplate',e,'mpu6500','mpu9250','neopixel','network','ntptime','onewire','os',T,c,'pycom','pye','queue','random','requests','rp2','rtch','select','socket','ssd1306','ssh','ssl','stm','struct',Z,'time','tpcalib','uarray','uasyncio/__init__','uasyncio/core','uasyncio/event','uasyncio/funcs','uasyncio/lock','uasyncio/stream','ubinascii','ubluetooth','ucollections','ucrypto','ucryptolib','uctypes','uerrno','uftpd','uhashlib','uheapq','ujson','ulab','ulab/approx','ulab/compare','ulab/fft','ulab/filter','ulab/linalg','ulab/numerical','ulab/poly','ulab/user','ulab/vector','umachine','umqtt/robust','umqtt/simple','uos','uplatform','uqueue','urandom','ure','urequests','urllib/urequest','uselect','usocket','ussl','ustruct','usys','utelnetserver','utime','utimeq','uwebsocket','uzlib','websocket','websocket_helper','wipy','writer','xpt2046','ymodem','zephyr','zlib'];D.collect();stubber.create_all_stubs();stubber.report()
+if __name__=='__main__'or U():
+	try:logging.basicConfig(level=logging.INFO)
+	except X:pass
+	main()
