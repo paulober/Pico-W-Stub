@@ -30,7 +30,7 @@ class OneWire:
     def readinto(self, buf: bytearray):
         pass
 
-    def reset(self, required:bool=False) -> int:
+    def reset(self, required:bool = False) -> bool | int:
         """
         Perform the onewire reset function.
         """
@@ -49,7 +49,7 @@ class OneWire:
         """
         pass
 
-    def write(self, buf:bytearray):
+    def write(self, buf:bytearray | str):
         pass
 
     def writebit(self, value:int) -> None:
@@ -59,6 +59,7 @@ class OneWire:
         pass
 
 
-class OneWireError:
+class OneWireError(Exception):
     ''
+    ...
 

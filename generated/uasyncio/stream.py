@@ -1,77 +1,88 @@
 """
-Module: 'uasyncio.stream' on micropython-rp2-1.15
+Module: 'uasyncio.stream' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-class Server:
-    ''
-    _serve = None
-    def close():
-        pass
+open_connection : Any ## <class 'generator'> = <generator>
+start_server : Any ## <class 'generator'> = <generator>
 
-    wait_closed = None
+class StreamReader():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class Stream:
-    ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+    def close(self, *args, **kwargs) -> Any:
+        ...
 
-    drain = None
-    def get_extra_info():
-        pass
+    read : Any ## <class 'generator'> = <generator>
+    readinto : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args, **kwargs) -> Any:
+        ...
 
+    readexactly : Any ## <class 'generator'> = <generator>
 
-class StreamReader:
-    ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+class StreamWriter():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    drain = None
-    def get_extra_info():
-        pass
+    def close(self, *args, **kwargs) -> Any:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    read : Any ## <class 'generator'> = <generator>
+    readinto : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args, **kwargs) -> Any:
+        ...
 
-class StreamWriter:
-    ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+    readexactly : Any ## <class 'generator'> = <generator>
 
-    drain = None
-    def get_extra_info():
-        pass
+class Stream():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    def close(self, *args, **kwargs) -> Any:
+        ...
 
-core = None
-open_connection = None
-start_server = None
-stream_awrite = None
+    read : Any ## <class 'generator'> = <generator>
+    readinto : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args, **kwargs) -> Any:
+        ...
+
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args, **kwargs) -> Any:
+        ...
+
+    readexactly : Any ## <class 'generator'> = <generator>
+
+class Server():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+    def close(self, *args, **kwargs) -> Any:
+        ...
+
+    wait_closed : Any ## <class 'generator'> = <generator>
+stream_awrite : Any ## <class 'generator'> = <generator>

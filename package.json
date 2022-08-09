@@ -1,18 +1,18 @@
 {
-  "name": "pico-stub",
+  "name": "pico-w-stub",
   "version": "1.15.0",
-  "description": "MicroPython stubs for the Raspberry Pi Pico",
+  "description": "MicroPython stubs for the Raspberry Pi Pico W",
   "scripts": {
     "post-process": "python3 post-process.py"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cpwood/Pico-Stub.git"
+    "url": "git+https://github.com/paulober/Pico-W-Stub.git"
   },
-  "author": "Chris Wood",
+  "author": "paulober",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/cpwood/Pico-Stub/issues"
+    "url": "https://github.com/paulober/Pico-W-Stub/issues"
   },
-  "homepage": "https://github.com/cpwood/Pico-Stub#readme"
+  "homepage": "https://github.com/paulober/Pico-W-Stub#readme"
 }

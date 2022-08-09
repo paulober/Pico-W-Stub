@@ -1,285 +1,355 @@
 """
-Module: 'machine' on micropython-rp2-1.15
+Module: 'machine' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-class ADC:
-    ''
-    CORE_TEMP = 4
-    def read_u16():
-        pass
 
+class ADC():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class I2C:
-    ''
-    def init():
-        pass
+    CORE_TEMP = 4 # type: int
+    def read_u16(self, *args, **kwargs) -> Any:
+        ...
 
-    def readfrom():
-        pass
 
-    def readfrom_into():
-        pass
+class I2C():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def readfrom_mem():
-        pass
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
 
-    def readfrom_mem_into():
-        pass
+    def start(self, *args, **kwargs) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def stop(self, *args, **kwargs) -> Any:
+        ...
 
-    def scan():
-        pass
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
-    def start():
-        pass
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-    def stop():
-        pass
+    def readfrom(self, *args, **kwargs) -> Any:
+        ...
 
-    def write():
-        pass
+    def readfrom_into(self, *args, **kwargs) -> Any:
+        ...
 
-    def writeto():
-        pass
+    def readfrom_mem(self, *args, **kwargs) -> Any:
+        ...
 
-    def writeto_mem():
-        pass
+    def readfrom_mem_into(self, *args, **kwargs) -> Any:
+        ...
 
-    def writevto():
-        pass
+    def scan(self, *args, **kwargs) -> Any:
+        ...
 
+    def writeto(self, *args, **kwargs) -> Any:
+        ...
 
-class PWM:
-    ''
-    def deinit():
-        pass
+    def writeto_mem(self, *args, **kwargs) -> Any:
+        ...
 
-    def duty_ns():
-        pass
+    def writevto(self, *args, **kwargs) -> Any:
+        ...
 
-    def duty_u16():
-        pass
 
-    def freq():
-        pass
+class I2S():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-PWRON_RESET = 1
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
 
-class Pin:
-    ''
-    ALT = 3
-    IN = 0
-    IRQ_FALLING = 4
-    IRQ_RISING = 8
-    OPEN_DRAIN = 2
-    OUT = 1
-    PULL_DOWN = 2
-    PULL_UP = 1
-    def high():
-        pass
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
-    def init():
-        pass
+    MONO = 0 # type: int
+    RX = 0 # type: int
+    STEREO = 1 # type: int
+    TX = 1 # type: int
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
 
-    def irq():
-        pass
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-    def low():
-        pass
+    def irq(self, *args, **kwargs) -> Any:
+        ...
 
-    def off():
-        pass
+    def shift(self, *args, **kwargs) -> Any:
+        ...
 
-    def on():
-        pass
 
-    def toggle():
-        pass
+class PWM():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def value():
-        pass
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
 
+    def duty_ns(self, *args, **kwargs) -> Any:
+        ...
 
-class SPI:
-    ''
-    LSB = 0
-    MSB = 1
-    def deinit():
-        pass
+    def duty_u16(self, *args, **kwargs) -> Any:
+        ...
 
-    def init():
-        pass
+    def freq(self, *args, **kwargs) -> Any:
+        ...
 
-    def read():
-        pass
+PWRON_RESET = 1 # type: int
 
-    def readinto():
-        pass
+class Pin():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def write():
-        pass
+    def value(self, *args, **kwargs) -> Any:
+        ...
 
-    def write_readinto():
-        pass
+    ALT = 3 # type: int
+    IN = 0 # type: int
+    IRQ_FALLING = 4 # type: int
+    IRQ_RISING = 8 # type: int
+    OPEN_DRAIN = 2 # type: int
+    OUT = 1 # type: int
+    PULL_DOWN = 2 # type: int
+    PULL_UP = 1 # type: int
+    def high(self, *args, **kwargs) -> Any:
+        ...
 
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-class Signal:
-    ''
-    def off():
-        pass
+    def irq(self, *args, **kwargs) -> Any:
+        ...
 
-    def on():
-        pass
+    def low(self, *args, **kwargs) -> Any:
+        ...
 
-    def value():
-        pass
+    def off(self, *args, **kwargs) -> Any:
+        ...
 
+    def on(self, *args, **kwargs) -> Any:
+        ...
 
-class SoftI2C:
-    ''
-    def init():
-        pass
+    def toggle(self, *args, **kwargs) -> Any:
+        ...
 
-    def readfrom():
-        pass
 
-    def readfrom_into():
-        pass
+class RTC():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def readfrom_mem():
-        pass
+    def datetime(self, *args, **kwargs) -> Any:
+        ...
 
-    def readfrom_mem_into():
-        pass
 
-    def readinto():
-        pass
+class SPI():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def scan():
-        pass
+    def read(self, *args, **kwargs) -> Any:
+        ...
 
-    def start():
-        pass
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
 
-    def stop():
-        pass
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
-    def write():
-        pass
+    LSB = 0 # type: int
+    MSB = 1 # type: int
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
 
-    def writeto():
-        pass
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-    def writeto_mem():
-        pass
+    def write_readinto(self, *args, **kwargs) -> Any:
+        ...
 
-    def writevto():
-        pass
 
+class Signal():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class SoftSPI:
-    ''
-    LSB = 0
-    MSB = 1
-    def deinit():
-        pass
+    def value(self, *args, **kwargs) -> Any:
+        ...
 
-    def init():
-        pass
+    def off(self, *args, **kwargs) -> Any:
+        ...
 
-    def read():
-        pass
+    def on(self, *args, **kwargs) -> Any:
+        ...
 
-    def readinto():
-        pass
 
-    def write():
-        pass
+class SoftI2C():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def write_readinto():
-        pass
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
 
+    def start(self, *args, **kwargs) -> Any:
+        ...
 
-class Timer:
-    ''
-    ONE_SHOT = 0
-    PERIODIC = 1
-    def deinit():
-        pass
+    def stop(self, *args, **kwargs) -> Any:
+        ...
 
-    def init():
-        pass
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-class UART:
-    ''
-    INV_RX = 2
-    INV_TX = 1
-    def any():
-        pass
+    def readfrom(self, *args, **kwargs) -> Any:
+        ...
 
-    def read():
-        pass
+    def readfrom_into(self, *args, **kwargs) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readfrom_mem(self, *args, **kwargs) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readfrom_mem_into(self, *args, **kwargs) -> Any:
+        ...
 
-    def sendbreak():
-        pass
+    def scan(self, *args, **kwargs) -> Any:
+        ...
 
-    def write():
-        pass
+    def writeto(self, *args, **kwargs) -> Any:
+        ...
 
+    def writeto_mem(self, *args, **kwargs) -> Any:
+        ...
 
-class WDT:
-    ''
-    def feed():
-        pass
+    def writevto(self, *args, **kwargs) -> Any:
+        ...
 
-WDT_RESET = 3
-def bootloader():
-    pass
 
-def deepsleep():
-    pass
+class SoftSPI():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def disable_irq():
-    pass
+    def read(self, *args, **kwargs) -> Any:
+        ...
 
-def enable_irq():
-    pass
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
 
-def freq():
-    pass
+    def write(self, *args, **kwargs) -> Any:
+        ...
 
-def idle():
-    pass
+    LSB = 0 # type: int
+    MSB = 1 # type: int
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
 
-def lightsleep():
-    pass
+    def init(self, *args, **kwargs) -> Any:
+        ...
 
-mem16 = None
-mem32 = None
-mem8 = None
-def reset():
-    pass
+    def write_readinto(self, *args, **kwargs) -> Any:
+        ...
 
-def reset_cause():
-    pass
 
-def soft_reset():
-    pass
+class Timer():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def time_pulse_us():
-    pass
+    ONE_SHOT = 0 # type: int
+    PERIODIC = 1 # type: int
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
 
-def unique_id():
-    pass
+    def init(self, *args, **kwargs) -> Any:
+        ...
+
+
+class UART():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+    def any(self, *args, **kwargs) -> Any:
+        ...
+
+    def read(self, *args, **kwargs) -> Any:
+        ...
+
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
+
+    def readline(self, *args, **kwargs) -> Any:
+        ...
+
+    def write(self, *args, **kwargs) -> Any:
+        ...
+
+    CTS = 1 # type: int
+    INV_RX = 2 # type: int
+    INV_TX = 1 # type: int
+    RTS = 2 # type: int
+    def deinit(self, *args, **kwargs) -> Any:
+        ...
+
+    def init(self, *args, **kwargs) -> Any:
+        ...
+
+    def sendbreak(self, *args, **kwargs) -> Any:
+        ...
+
+
+class WDT():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+    def feed(self, *args, **kwargs) -> Any:
+        ...
+
+WDT_RESET = 3 # type: int
+def bitstream(*args, **kwargs) -> Any:
+    ...
+
+def bootloader(*args, **kwargs) -> Any:
+    ...
+
+def deepsleep(*args, **kwargs) -> Any:
+    ...
+
+def disable_irq(*args, **kwargs) -> Any:
+    ...
+
+def enable_irq(*args, **kwargs) -> Any:
+    ...
+
+def freq(*args, **kwargs) -> Any:
+    ...
+
+def idle(*args, **kwargs) -> Any:
+    ...
+
+def lightsleep(*args, **kwargs) -> Any:
+    ...
+
+mem16 : Any ## <class 'mem'> = <16-bit memory>
+mem32 : Any ## <class 'mem'> = <32-bit memory>
+mem8 : Any ## <class 'mem'> = <8-bit memory>
+def reset(*args, **kwargs) -> Any:
+    ...
+
+def reset_cause(*args, **kwargs) -> Any:
+    ...
+
+def soft_reset(*args, **kwargs) -> Any:
+    ...
+
+def time_pulse_us(*args, **kwargs) -> Any:
+    ...
+
+def unique_id(*args, **kwargs) -> Any:
+    ...
 

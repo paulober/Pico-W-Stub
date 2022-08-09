@@ -1,53 +1,60 @@
 """
-Module: 'collections' on micropython-rp2-1.15
+Module: 'collections' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-
-class OrderedDict:
-    ''
-    def clear():
-        pass
-
-    def copy():
-        pass
-
-    def fromkeys():
-        pass
-
-    def get():
-        pass
-
-    def items():
-        pass
-
-    def keys():
-        pass
-
-    def pop():
-        pass
-
-    def popitem():
-        pass
-
-    def setdefault():
-        pass
-
-    def update():
-        pass
-
-    def values():
-        pass
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
 
-class deque:
-    ''
-    def append():
-        pass
+class OrderedDict():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def popleft():
-        pass
+    def clear(self, *args, **kwargs) -> Any:
+        ...
 
-def namedtuple():
-    pass
+    def copy(self, *args, **kwargs) -> Any:
+        ...
+
+    def get(self, *args, **kwargs) -> Any:
+        ...
+
+    def items(self, *args, **kwargs) -> Any:
+        ...
+
+    def keys(self, *args, **kwargs) -> Any:
+        ...
+
+    def pop(self, *args, **kwargs) -> Any:
+        ...
+
+    def popitem(self, *args, **kwargs) -> Any:
+        ...
+
+    def setdefault(self, *args, **kwargs) -> Any:
+        ...
+
+    def update(self, *args, **kwargs) -> Any:
+        ...
+
+    def values(self, *args, **kwargs) -> Any:
+        ...
+
+    @classmethod
+    def fromkeys(cls, *args, **kwargs) -> Any:
+        ...
+
+
+class deque():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+    def append(self, *args, **kwargs) -> Any:
+        ...
+
+    def popleft(self, *args, **kwargs) -> Any:
+        ...
+
+def namedtuple(*args, **kwargs) -> Any:
+    ...
 

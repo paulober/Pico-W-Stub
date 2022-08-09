@@ -1,615 +1,663 @@
 """
-Module: 'builtins' on micropython-rp2-1.15
+Module: 'builtins' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-class ArithmeticError:
-    ''
 
-class AssertionError:
-    ''
+class ArithmeticError(Exception):
+    ...
 
-class AttributeError:
-    ''
+class AssertionError(Exception):
+    ...
 
-class BaseException:
-    ''
+class AttributeError(Exception):
+    ...
 
-class EOFError:
-    ''
-Ellipsis = None
+class EOFError(Exception):
+    ...
+Ellipsis : Any ## <class ''> = Ellipsis
 
-class Exception:
-    ''
+class GeneratorExit():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class GeneratorExit:
-    ''
 
-class ImportError:
-    ''
+class ImportError(Exception):
+    ...
 
-class IndentationError:
-    ''
+class IndentationError(Exception):
+    ...
 
-class IndexError:
-    ''
+class IndexError(Exception):
+    ...
 
-class KeyError:
-    ''
+class KeyError(Exception):
+    ...
 
-class KeyboardInterrupt:
-    ''
+class KeyboardInterrupt(Exception):
+    ...
 
-class LookupError:
-    ''
+class LookupError(Exception):
+    ...
 
-class MemoryError:
-    ''
+class MemoryError(Exception):
+    ...
 
-class NameError:
-    ''
+class NameError(Exception):
+    ...
 
-class NotImplementedError:
-    ''
+class NotImplementedError(Exception):
+    ...
 
-class OSError:
-    ''
+class OSError(Exception):
+    ...
 
-class OverflowError:
-    ''
+class OverflowError(Exception):
+    ...
 
-class RuntimeError:
-    ''
+class RuntimeError(Exception):
+    ...
 
-class StopAsyncIteration:
-    ''
+class StopIteration(Exception):
+    ...
 
-class StopIteration:
-    ''
+class SyntaxError(Exception):
+    ...
 
-class SyntaxError:
-    ''
+class SystemExit(Exception):
+    ...
 
-class SystemExit:
-    ''
+class TypeError(Exception):
+    ...
 
-class TypeError:
-    ''
+class ValueError(Exception):
+    ...
 
-class UnicodeError:
-    ''
+class ZeroDivisionError(Exception):
+    ...
+def abs(*args, **kwargs) -> Any:
+    ...
 
-class ValueError:
-    ''
+def all(*args, **kwargs) -> Any:
+    ...
 
-class ViperTypeError:
-    ''
+def any(*args, **kwargs) -> Any:
+    ...
 
-class ZeroDivisionError:
-    ''
-def abs():
-    pass
 
-def all():
-    pass
+class bool():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def any():
-    pass
 
-def bin():
-    pass
+class bytearray():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
+    def append(self, *args, **kwargs) -> Any:
+        ...
 
-class bool:
-    ''
+    def extend(self, *args, **kwargs) -> Any:
+        ...
 
-class bytearray:
-    ''
-    def append():
-        pass
+    def decode(self, *args, **kwargs) -> Any:
+        ...
 
-    def decode():
-        pass
 
-    def extend():
-        pass
+class bytes():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
+    def count(self, *args, **kwargs) -> Any:
+        ...
 
-class bytes:
-    ''
-    def center():
-        pass
+    def endswith(self, *args, **kwargs) -> Any:
+        ...
 
-    def count():
-        pass
+    def find(self, *args, **kwargs) -> Any:
+        ...
 
-    def decode():
-        pass
+    def format(self, *args, **kwargs) -> Any:
+        ...
 
-    def endswith():
-        pass
+    def index(self, *args, **kwargs) -> Any:
+        ...
 
-    def find():
-        pass
+    def isalpha(self, *args, **kwargs) -> Any:
+        ...
 
-    def format():
-        pass
+    def isdigit(self, *args, **kwargs) -> Any:
+        ...
 
-    def index():
-        pass
+    def islower(self, *args, **kwargs) -> Any:
+        ...
 
-    def isalpha():
-        pass
+    def isspace(self, *args, **kwargs) -> Any:
+        ...
 
-    def isdigit():
-        pass
+    def isupper(self, *args, **kwargs) -> Any:
+        ...
 
-    def islower():
-        pass
+    def join(self, *args, **kwargs) -> Any:
+        ...
 
-    def isspace():
-        pass
+    def lower(self, *args, **kwargs) -> Any:
+        ...
 
-    def isupper():
-        pass
+    def lstrip(self, *args, **kwargs) -> Any:
+        ...
 
-    def join():
-        pass
+    def replace(self, *args, **kwargs) -> Any:
+        ...
 
-    def lower():
-        pass
+    def rfind(self, *args, **kwargs) -> Any:
+        ...
 
-    def lstrip():
-        pass
+    def rindex(self, *args, **kwargs) -> Any:
+        ...
 
-    def partition():
-        pass
+    def rsplit(self, *args, **kwargs) -> Any:
+        ...
 
-    def replace():
-        pass
+    def rstrip(self, *args, **kwargs) -> Any:
+        ...
 
-    def rfind():
-        pass
+    def split(self, *args, **kwargs) -> Any:
+        ...
 
-    def rindex():
-        pass
+    def startswith(self, *args, **kwargs) -> Any:
+        ...
 
-    def rpartition():
-        pass
+    def strip(self, *args, **kwargs) -> Any:
+        ...
 
-    def rsplit():
-        pass
+    def upper(self, *args, **kwargs) -> Any:
+        ...
 
-    def rstrip():
-        pass
+    def center(self, *args, **kwargs) -> Any:
+        ...
 
-    def split():
-        pass
+    def decode(self, *args, **kwargs) -> Any:
+        ...
 
-    def splitlines():
-        pass
+    def partition(self, *args, **kwargs) -> Any:
+        ...
 
-    def startswith():
-        pass
+    def rpartition(self, *args, **kwargs) -> Any:
+        ...
 
-    def strip():
-        pass
+    def splitlines(self, *args, **kwargs) -> Any:
+        ...
 
-    def upper():
-        pass
+def callable(*args, **kwargs) -> Any:
+    ...
 
-def callable():
-    pass
+def chr(*args, **kwargs) -> Any:
+    ...
 
-def chr():
-    pass
 
+class dict():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class classmethod:
-    ''
-def compile():
-    pass
+    def clear(self, *args, **kwargs) -> Any:
+        ...
 
+    def copy(self, *args, **kwargs) -> Any:
+        ...
 
-class complex:
-    ''
-def delattr():
-    pass
+    def get(self, *args, **kwargs) -> Any:
+        ...
 
+    def items(self, *args, **kwargs) -> Any:
+        ...
 
-class dict:
-    ''
-    def clear():
-        pass
+    def keys(self, *args, **kwargs) -> Any:
+        ...
 
-    def copy():
-        pass
+    def pop(self, *args, **kwargs) -> Any:
+        ...
 
-    def fromkeys():
-        pass
+    def popitem(self, *args, **kwargs) -> Any:
+        ...
 
-    def get():
-        pass
+    def setdefault(self, *args, **kwargs) -> Any:
+        ...
 
-    def items():
-        pass
+    def update(self, *args, **kwargs) -> Any:
+        ...
 
-    def keys():
-        pass
+    def values(self, *args, **kwargs) -> Any:
+        ...
 
-    def pop():
-        pass
+    @classmethod
+    def fromkeys(cls, *args, **kwargs) -> Any:
+        ...
 
-    def popitem():
-        pass
+def dir(*args, **kwargs) -> Any:
+    ...
 
-    def setdefault():
-        pass
+def divmod(*args, **kwargs) -> Any:
+    ...
 
-    def update():
-        pass
+def eval(*args, **kwargs) -> Any:
+    ...
 
-    def values():
-        pass
+def exec(*args, **kwargs) -> Any:
+    ...
 
-def dir():
-    pass
+def getattr(*args, **kwargs) -> Any:
+    ...
 
-def divmod():
-    pass
+def globals(*args, **kwargs) -> Any:
+    ...
 
+def hasattr(*args, **kwargs) -> Any:
+    ...
 
-class enumerate:
-    ''
-def eval():
-    pass
+def hash(*args, **kwargs) -> Any:
+    ...
 
-def exec():
-    pass
+def id(*args, **kwargs) -> Any:
+    ...
 
 
-class filter:
-    ''
+class int():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class float:
-    ''
+    @classmethod
+    def from_bytes(cls, *args, **kwargs) -> Any:
+        ...
 
-class frozenset:
-    ''
-    def copy():
-        pass
+    def to_bytes(self, *args, **kwargs) -> Any:
+        ...
 
-    def difference():
-        pass
+def isinstance(*args, **kwargs) -> Any:
+    ...
 
-    def intersection():
-        pass
+def issubclass(*args, **kwargs) -> Any:
+    ...
 
-    def isdisjoint():
-        pass
+def iter(*args, **kwargs) -> Any:
+    ...
 
-    def issubset():
-        pass
+def len(*args, **kwargs) -> Any:
+    ...
 
-    def issuperset():
-        pass
 
-    def symmetric_difference():
-        pass
+class list():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def union():
-        pass
+    def append(self, *args, **kwargs) -> Any:
+        ...
 
-def getattr():
-    pass
+    def clear(self, *args, **kwargs) -> Any:
+        ...
 
-def globals():
-    pass
+    def copy(self, *args, **kwargs) -> Any:
+        ...
 
-def hasattr():
-    pass
+    def count(self, *args, **kwargs) -> Any:
+        ...
 
-def hash():
-    pass
+    def extend(self, *args, **kwargs) -> Any:
+        ...
 
-def help():
-    pass
+    def index(self, *args, **kwargs) -> Any:
+        ...
 
-def hex():
-    pass
+    def insert(self, *args, **kwargs) -> Any:
+        ...
 
-def id():
-    pass
+    def pop(self, *args, **kwargs) -> Any:
+        ...
 
-def input():
-    pass
+    def remove(self, *args, **kwargs) -> Any:
+        ...
 
+    def reverse(self, *args, **kwargs) -> Any:
+        ...
 
-class int:
-    ''
-    def from_bytes():
-        pass
+    def sort(self, *args, **kwargs) -> Any:
+        ...
 
-    def to_bytes():
-        pass
+def locals(*args, **kwargs) -> Any:
+    ...
 
-def isinstance():
-    pass
 
-def issubclass():
-    pass
+class map():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def iter():
-    pass
+def next(*args, **kwargs) -> Any:
+    ...
 
-def len():
-    pass
 
+class object():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class list:
-    ''
-    def append():
-        pass
+def open(*args, **kwargs) -> Any:
+    ...
 
-    def clear():
-        pass
+def ord(*args, **kwargs) -> Any:
+    ...
 
-    def copy():
-        pass
+def pow(*args, **kwargs) -> Any:
+    ...
 
-    def count():
-        pass
+def print(*args, **kwargs) -> Any:
+    ...
 
-    def extend():
-        pass
 
-    def index():
-        pass
+class range():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def insert():
-        pass
+def repr(*args, **kwargs) -> Any:
+    ...
 
-    def pop():
-        pass
+def round(*args, **kwargs) -> Any:
+    ...
 
-    def remove():
-        pass
 
-    def reverse():
-        pass
+class set():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def sort():
-        pass
+    def clear(self, *args, **kwargs) -> Any:
+        ...
 
-def locals():
-    pass
+    def copy(self, *args, **kwargs) -> Any:
+        ...
 
+    def pop(self, *args, **kwargs) -> Any:
+        ...
 
-class map:
-    ''
-def max():
-    pass
+    def remove(self, *args, **kwargs) -> Any:
+        ...
 
+    def update(self, *args, **kwargs) -> Any:
+        ...
 
-class memoryview:
-    ''
-def min():
-    pass
+    def add(self, *args, **kwargs) -> Any:
+        ...
 
-def next():
-    pass
+    def difference(self, *args, **kwargs) -> Any:
+        ...
 
+    def difference_update(self, *args, **kwargs) -> Any:
+        ...
 
-class object:
-    ''
-def oct():
-    pass
+    def discard(self, *args, **kwargs) -> Any:
+        ...
 
-def open():
-    pass
+    def intersection(self, *args, **kwargs) -> Any:
+        ...
 
-def ord():
-    pass
+    def intersection_update(self, *args, **kwargs) -> Any:
+        ...
 
-def pow():
-    pass
+    def isdisjoint(self, *args, **kwargs) -> Any:
+        ...
 
-def print():
-    pass
+    def issubset(self, *args, **kwargs) -> Any:
+        ...
 
+    def issuperset(self, *args, **kwargs) -> Any:
+        ...
 
-class property:
-    ''
-    def deleter():
-        pass
+    def symmetric_difference(self, *args, **kwargs) -> Any:
+        ...
 
-    def getter():
-        pass
+    def symmetric_difference_update(self, *args, **kwargs) -> Any:
+        ...
 
-    def setter():
-        pass
+    def union(self, *args, **kwargs) -> Any:
+        ...
 
+def setattr(*args, **kwargs) -> Any:
+    ...
 
-class range:
-    ''
-def repr():
-    pass
+def sorted(*args, **kwargs) -> Any:
+    ...
 
 
-class reversed:
-    ''
-def round():
-    pass
+class str():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
+    def count(self, *args, **kwargs) -> Any:
+        ...
 
-class set:
-    ''
-    def add():
-        pass
+    def endswith(self, *args, **kwargs) -> Any:
+        ...
 
-    def clear():
-        pass
+    def find(self, *args, **kwargs) -> Any:
+        ...
 
-    def copy():
-        pass
+    def format(self, *args, **kwargs) -> Any:
+        ...
 
-    def difference():
-        pass
+    def index(self, *args, **kwargs) -> Any:
+        ...
 
-    def difference_update():
-        pass
+    def isalpha(self, *args, **kwargs) -> Any:
+        ...
 
-    def discard():
-        pass
+    def isdigit(self, *args, **kwargs) -> Any:
+        ...
 
-    def intersection():
-        pass
+    def islower(self, *args, **kwargs) -> Any:
+        ...
 
-    def intersection_update():
-        pass
+    def isspace(self, *args, **kwargs) -> Any:
+        ...
 
-    def isdisjoint():
-        pass
+    def isupper(self, *args, **kwargs) -> Any:
+        ...
 
-    def issubset():
-        pass
+    def join(self, *args, **kwargs) -> Any:
+        ...
 
-    def issuperset():
-        pass
+    def lower(self, *args, **kwargs) -> Any:
+        ...
 
-    def pop():
-        pass
+    def lstrip(self, *args, **kwargs) -> Any:
+        ...
 
-    def remove():
-        pass
+    def replace(self, *args, **kwargs) -> Any:
+        ...
 
-    def symmetric_difference():
-        pass
+    def rfind(self, *args, **kwargs) -> Any:
+        ...
 
-    def symmetric_difference_update():
-        pass
+    def rindex(self, *args, **kwargs) -> Any:
+        ...
 
-    def union():
-        pass
+    def rsplit(self, *args, **kwargs) -> Any:
+        ...
 
-    def update():
-        pass
+    def rstrip(self, *args, **kwargs) -> Any:
+        ...
 
-def setattr():
-    pass
+    def split(self, *args, **kwargs) -> Any:
+        ...
 
+    def startswith(self, *args, **kwargs) -> Any:
+        ...
 
-class slice:
-    ''
-def sorted():
-    pass
+    def strip(self, *args, **kwargs) -> Any:
+        ...
 
+    def upper(self, *args, **kwargs) -> Any:
+        ...
 
-class staticmethod:
-    ''
+    def center(self, *args, **kwargs) -> Any:
+        ...
 
-class str:
-    ''
-    def center():
-        pass
+    def encode(self, *args, **kwargs) -> Any:
+        ...
 
-    def count():
-        pass
+    def partition(self, *args, **kwargs) -> Any:
+        ...
 
-    def encode():
-        pass
+    def rpartition(self, *args, **kwargs) -> Any:
+        ...
 
-    def endswith():
-        pass
+    def splitlines(self, *args, **kwargs) -> Any:
+        ...
 
-    def find():
-        pass
+def sum(*args, **kwargs) -> Any:
+    ...
 
-    def format():
-        pass
 
-    def index():
-        pass
+class super():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def isalpha():
-        pass
 
-    def isdigit():
-        pass
+class tuple():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def islower():
-        pass
+    def count(self, *args, **kwargs) -> Any:
+        ...
 
-    def isspace():
-        pass
+    def index(self, *args, **kwargs) -> Any:
+        ...
 
-    def isupper():
-        pass
 
-    def join():
-        pass
+class type():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def lower():
-        pass
 
-    def lstrip():
-        pass
+class zip():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def partition():
-        pass
+NotImplemented : Any ## <class ''> = NotImplemented
 
-    def replace():
-        pass
+class StopAsyncIteration():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def rfind():
-        pass
 
-    def rindex():
-        pass
+class UnicodeError(Exception):
+    ...
 
-    def rpartition():
-        pass
+class ViperTypeError(Exception):
+    ...
+def bin(*args, **kwargs) -> Any:
+    ...
 
-    def rsplit():
-        pass
+def compile(*args, **kwargs) -> Any:
+    ...
 
-    def rstrip():
-        pass
 
-    def split():
-        pass
+class complex():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def splitlines():
-        pass
+def delattr(*args, **kwargs) -> Any:
+    ...
 
-    def startswith():
-        pass
 
-    def strip():
-        pass
+class enumerate():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def upper():
-        pass
+def execfile(*args, **kwargs) -> Any:
+    ...
 
-def sum():
-    pass
 
+class filter():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class super:
-    ''
 
-class tuple:
-    ''
-    def count():
-        pass
+class float():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-    def index():
-        pass
 
+class frozenset():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class type:
-    ''
+    def copy(self, *args, **kwargs) -> Any:
+        ...
 
-class zip:
-    ''
+    def difference(self, *args, **kwargs) -> Any:
+        ...
+
+    def intersection(self, *args, **kwargs) -> Any:
+        ...
+
+    def isdisjoint(self, *args, **kwargs) -> Any:
+        ...
+
+    def issubset(self, *args, **kwargs) -> Any:
+        ...
+
+    def issuperset(self, *args, **kwargs) -> Any:
+        ...
+
+    def symmetric_difference(self, *args, **kwargs) -> Any:
+        ...
+
+    def union(self, *args, **kwargs) -> Any:
+        ...
+
+def help(*args, **kwargs) -> Any:
+    ...
+
+def hex(*args, **kwargs) -> Any:
+    ...
+
+def input(*args, **kwargs) -> Any:
+    ...
+
+def max(*args, **kwargs) -> Any:
+    ...
+
+
+class memoryview():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+def min(*args, **kwargs) -> Any:
+    ...
+
+def oct(*args, **kwargs) -> Any:
+    ...
+
+
+class property():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+    def deleter(self, *args, **kwargs) -> Any:
+        ...
+
+    def getter(self, *args, **kwargs) -> Any:
+        ...
+
+    def setter(self, *args, **kwargs) -> Any:
+        ...
+
+
+class reversed():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class slice():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+

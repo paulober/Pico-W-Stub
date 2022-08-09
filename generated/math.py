@@ -1,127 +1,132 @@
 """
-Module: 'math' on micropython-rp2-1.15
+Module: 'math' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-def acos():
-    pass
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-def acosh():
-    pass
+def pow(*args, **kwargs) -> Any:
+    ...
 
-def asin():
-    pass
+def acos(*args, **kwargs) -> Any:
+    ...
 
-def asinh():
-    pass
+def acosh(*args, **kwargs) -> Any:
+    ...
 
-def atan():
-    pass
+def asin(*args, **kwargs) -> Any:
+    ...
 
-def atan2():
-    pass
+def asinh(*args, **kwargs) -> Any:
+    ...
 
-def atanh():
-    pass
+def atan(*args, **kwargs) -> Any:
+    ...
 
-def ceil():
-    pass
+def atan2(*args, **kwargs) -> Any:
+    ...
 
-def copysign():
-    pass
+def atanh(*args, **kwargs) -> Any:
+    ...
 
-def cos():
-    pass
+def ceil(*args, **kwargs) -> Any:
+    ...
 
-def cosh():
-    pass
+def copysign(*args, **kwargs) -> Any:
+    ...
 
-def degrees():
-    pass
+def cos(*args, **kwargs) -> Any:
+    ...
 
-e = 2.718282
-def erf():
-    pass
+def cosh(*args, **kwargs) -> Any:
+    ...
 
-def erfc():
-    pass
+def degrees(*args, **kwargs) -> Any:
+    ...
 
-def exp():
-    pass
+e = 2.718282 # type: float
+def erf(*args, **kwargs) -> Any:
+    ...
 
-def expm1():
-    pass
+def erfc(*args, **kwargs) -> Any:
+    ...
 
-def fabs():
-    pass
+def exp(*args, **kwargs) -> Any:
+    ...
 
-def factorial():
-    pass
+def expm1(*args, **kwargs) -> Any:
+    ...
 
-def floor():
-    pass
+def fabs(*args, **kwargs) -> Any:
+    ...
 
-def fmod():
-    pass
+def factorial(*args, **kwargs) -> Any:
+    ...
 
-def frexp():
-    pass
+def floor(*args, **kwargs) -> Any:
+    ...
 
-def gamma():
-    pass
+def fmod(*args, **kwargs) -> Any:
+    ...
 
-def isclose():
-    pass
+def frexp(*args, **kwargs) -> Any:
+    ...
 
-def isfinite():
-    pass
+def gamma(*args, **kwargs) -> Any:
+    ...
 
-def isinf():
-    pass
+inf = inf # type: float
+def isclose(*args, **kwargs) -> Any:
+    ...
 
-def isnan():
-    pass
+def isfinite(*args, **kwargs) -> Any:
+    ...
 
-def ldexp():
-    pass
+def isinf(*args, **kwargs) -> Any:
+    ...
 
-def lgamma():
-    pass
+def isnan(*args, **kwargs) -> Any:
+    ...
 
-def log():
-    pass
+def ldexp(*args, **kwargs) -> Any:
+    ...
 
-def log10():
-    pass
+def lgamma(*args, **kwargs) -> Any:
+    ...
 
-def log2():
-    pass
+def log(*args, **kwargs) -> Any:
+    ...
 
-def modf():
-    pass
+def log10(*args, **kwargs) -> Any:
+    ...
 
-pi = 3.141593
-def pow():
-    pass
+def log2(*args, **kwargs) -> Any:
+    ...
 
-def radians():
-    pass
+def modf(*args, **kwargs) -> Any:
+    ...
 
-def sin():
-    pass
+nan = nan # type: float
+pi = 3.141593 # type: float
+def radians(*args, **kwargs) -> Any:
+    ...
 
-def sinh():
-    pass
+def sin(*args, **kwargs) -> Any:
+    ...
 
-def sqrt():
-    pass
+def sinh(*args, **kwargs) -> Any:
+    ...
 
-def tan():
-    pass
+def sqrt(*args, **kwargs) -> Any:
+    ...
 
-def tanh():
-    pass
+def tan(*args, **kwargs) -> Any:
+    ...
 
-def trunc():
-    pass
+def tanh(*args, **kwargs) -> Any:
+    ...
+
+tau = 6.283185 # type: float
+def trunc(*args, **kwargs) -> Any:
+    ...
 

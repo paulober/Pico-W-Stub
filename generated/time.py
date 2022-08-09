@@ -1,44 +1,46 @@
 """
-Module: 'time' on micropython-rp2-1.15
+Module: 'time' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-def gmtime():
-    pass
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-def localtime():
-    pass
+def gmtime(*args, **kwargs) -> Any:
+    ...
 
-def mktime():
-    pass
+def localtime(*args, **kwargs) -> Any:
+    ...
 
-def sleep():
-    pass
+def mktime(*args, **kwargs) -> Any:
+    ...
 
-def sleep_ms():
-    pass
+def sleep(*args, **kwargs) -> Any:
+    ...
 
-def sleep_us():
-    pass
+def sleep_ms(*args, **kwargs) -> Any:
+    ...
 
-def ticks_add():
-    pass
+def sleep_us(*args, **kwargs) -> Any:
+    ...
 
-def ticks_cpu():
-    pass
+def ticks_add(*args, **kwargs) -> Any:
+    ...
 
-def ticks_diff():
-    pass
+def ticks_cpu(*args, **kwargs) -> Any:
+    ...
 
-def ticks_ms():
-    pass
+def ticks_diff(*args, **kwargs) -> Any:
+    ...
 
-def ticks_us():
-    pass
+def ticks_ms(*args, **kwargs) -> Any:
+    ...
 
-def time():
-    pass
+def ticks_us(*args, **kwargs) -> Any:
+    ...
 
-def time_ns():
-    pass
+def time(*args, **kwargs) -> Any:
+    ...
+
+def time_ns(*args, **kwargs) -> Any:
+    ...
 

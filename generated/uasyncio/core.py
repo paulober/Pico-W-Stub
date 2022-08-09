@@ -1,130 +1,122 @@
 """
-Module: 'uasyncio.core' on micropython-rp2-1.15
+Module: 'uasyncio.core' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-
-class CancelledError:
-    ''
-
-class IOQueue:
-    ''
-    def _dequeue():
-        pass
-
-    def _enqueue():
-        pass
-
-    def queue_read():
-        pass
-
-    def queue_write():
-        pass
-
-    def remove():
-        pass
-
-    def wait_io_event():
-        pass
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
 
-class Loop:
-    ''
-    _exc_handler = None
-    def call_exception_handler():
-        pass
+class CancelledError(Exception):
+    ...
 
-    def close():
-        pass
-
-    def create_task():
-        pass
-
-    def default_exception_handler():
-        pass
-
-    def get_exception_handler():
-        pass
-
-    def run_forever():
-        pass
-
-    def run_until_complete():
-        pass
-
-    def set_exception_handler():
-        pass
-
-    def stop():
-        pass
+class Task():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
 
-class SingletonGenerator:
-    ''
+class TaskQueue():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-class Task:
-    ''
+    def pop(self, *args, **kwargs) -> Any:
+        ...
 
-class TaskQueue:
-    ''
-    def peek():
-        pass
+    def remove(self, *args, **kwargs) -> Any:
+        ...
 
-    def pop_head():
-        pass
+    def peek(self, *args, **kwargs) -> Any:
+        ...
 
-    def push_head():
-        pass
+    def push(self, *args, **kwargs) -> Any:
+        ...
 
-    def push_sorted():
-        pass
+def sleep(*args, **kwargs) -> Any:
+    ...
 
-    def remove():
-        pass
+def sleep_ms(*args, **kwargs) -> Any:
+    ...
+
+def ticks_add(*args, **kwargs) -> Any:
+    ...
+
+def ticks_diff(*args, **kwargs) -> Any:
+    ...
 
 
-class TimeoutError:
-    ''
-_exc_context = None
-_io_queue = None
-def _promote_to_task():
-    pass
+class TimeoutError(Exception):
+    ...
 
-_stop_task = None
-_stopper = None
-_task_queue = None
-def create_task():
-    pass
+class SingletonGenerator():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def current_task():
-    pass
 
-def get_event_loop():
-    pass
+class IOQueue():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def new_event_loop():
-    pass
+    def remove(self, *args, **kwargs) -> Any:
+        ...
 
-def run():
-    pass
+    def wait_io_event(self, *args, **kwargs) -> Any:
+        ...
 
-def run_until_complete():
-    pass
+    def queue_read(self, *args, **kwargs) -> Any:
+        ...
 
-select = None
-def sleep():
-    pass
+    def queue_write(self, *args, **kwargs) -> Any:
+        ...
 
-def sleep_ms():
-    pass
 
-sys = None
-def ticks():
-    pass
+class Loop():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
 
-def ticks_add():
-    pass
+    def close(self, *args, **kwargs) -> Any:
+        ...
 
-def ticks_diff():
-    pass
+    def stop(self, *args, **kwargs) -> Any:
+        ...
+
+    def create_task(self, *args, **kwargs) -> Any:
+        ...
+
+    def run_until_complete(self, *args, **kwargs) -> Any:
+        ...
+
+    def call_exception_handler(self, *args, **kwargs) -> Any:
+        ...
+
+    def run_forever(self, *args, **kwargs) -> Any:
+        ...
+
+    def set_exception_handler(self, *args, **kwargs) -> Any:
+        ...
+
+    def get_exception_handler(self, *args, **kwargs) -> Any:
+        ...
+
+    def default_exception_handler(self, *args, **kwargs) -> Any:
+        ...
+
+def create_task(*args, **kwargs) -> Any:
+    ...
+
+def run_until_complete(*args, **kwargs) -> Any:
+    ...
+
+def run(*args, **kwargs) -> Any:
+    ...
+
+def get_event_loop(*args, **kwargs) -> Any:
+    ...
+
+def current_task(*args, **kwargs) -> Any:
+    ...
+
+def new_event_loop(*args, **kwargs) -> Any:
+    ...
+
+def ticks(*args, **kwargs) -> Any:
+    ...
 

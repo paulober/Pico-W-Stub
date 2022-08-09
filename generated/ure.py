@@ -1,17 +1,19 @@
 """
-Module: 'ure' on micropython-rp2-1.15
+Module: 'ure' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-def compile():
-    pass
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
 
-def match():
-    pass
+def compile(*args, **kwargs) -> Any:
+    ...
 
-def search():
-    pass
+def match(*args, **kwargs) -> Any:
+    ...
 
-def sub():
-    pass
+def search(*args, **kwargs) -> Any:
+    ...
+
+def sub(*args, **kwargs) -> Any:
+    ...
 

@@ -1,28 +1,30 @@
 """
-Module: 'errno' on micropython-rp2-1.15
+Module: 'errno' on micropython-v1.19.1-rp2
 """
-# MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.15.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2', 'ver': '1.15', 'release': '1.15.0'}
-# Stubber: 1.3.9
-EACCES = 13
-EADDRINUSE = 112
-EAGAIN = 11
-EALREADY = 120
-EBADF = 9
-ECONNABORTED = 113
-ECONNREFUSED = 111
-ECONNRESET = 104
-EEXIST = 17
-EHOSTUNREACH = 118
-EINPROGRESS = 119
-EINVAL = 22
-EIO = 5
-EISDIR = 21
-ENOBUFS = 105
-ENODEV = 19
-ENOENT = 2
-ENOMEM = 12
-ENOTCONN = 128
-EOPNOTSUPP = 95
-EPERM = 1
-ETIMEDOUT = 116
-errorcode = None
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.5.7
+from typing import Any
+
+EACCES = 13 # type: int
+EADDRINUSE = 98 # type: int
+EAGAIN = 11 # type: int
+EALREADY = 114 # type: int
+EBADF = 9 # type: int
+ECONNABORTED = 103 # type: int
+ECONNREFUSED = 111 # type: int
+ECONNRESET = 104 # type: int
+EEXIST = 17 # type: int
+EHOSTUNREACH = 113 # type: int
+EINPROGRESS = 115 # type: int
+EINVAL = 22 # type: int
+EIO = 5 # type: int
+EISDIR = 21 # type: int
+ENOBUFS = 105 # type: int
+ENODEV = 19 # type: int
+ENOENT = 2 # type: int
+ENOMEM = 12 # type: int
+ENOTCONN = 107 # type: int
+EOPNOTSUPP = 95 # type: int
+EPERM = 1 # type: int
+ETIMEDOUT = 110 # type: int
+errorcode = {} # type: dict
