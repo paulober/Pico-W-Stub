@@ -74,7 +74,6 @@ def main():
     #|shutil.copyfile(frozen_path.joinpath("_importlib_modulespec.pyi"), pylance_path.joinpath("stdlib", "_importlib_modulespec.pyi"))
     
     shutil.copyfile(frozen_path.joinpath("_thread.pyi"), pylance_path.joinpath("stdlib", "_thread.pyi"))
-    shutil.copyfile(frozen_path.joinpath("_uasyncio.pyi"), pylance_path.joinpath("stdlib", "_uasyncio.pyi"))
     
     #|Currently not include in firmware
     #|shutil.copyfile(frozen_path.joinpath("abc.pyi"), pylance_path.joinpath("stdlib", "abc.pyi"))
@@ -117,7 +116,7 @@ def main():
     shutil.copyfile(frozen_path.joinpath("ure.pyi"), pylance_path.joinpath("stdlib", "ure.pyi"))
     shutil.copyfile(frozen_path.joinpath("uselect.pyi"), pylance_path.joinpath("stdlib", "uselect.pyi"))
     shutil.copyfile(frozen_path.joinpath("usocket.pyi"), pylance_path.joinpath("stdlib", "usocket.pyi"))
-    shutil.copyfile(frozen_path.joinpath("usslt.pyi"), pylance_path.joinpath("stdlib", "ussl.pyi"))
+    shutil.copyfile(frozen_path.joinpath("ussl.pyi"), pylance_path.joinpath("stdlib", "ussl.pyi"))
     shutil.copyfile(frozen_path.joinpath("ustruct.pyi"), pylance_path.joinpath("stdlib", "ustruct.pyi"))
     shutil.copyfile(frozen_path.joinpath("usys.pyi"), pylance_path.joinpath("stdlib", "usys.pyi"))
     shutil.copyfile(frozen_path.joinpath("utime.pyi"), pylance_path.joinpath("stdlib", "utime.pyi"))
@@ -126,7 +125,10 @@ def main():
 
     # stubs
     shutil.copytree(frozen_path.joinpath("uasyncio"), pylance_path.joinpath("stubs", "uasyncio"))
-    copy_to_pylance_folder(frozen_path.joinpath("_onewire.pyi"), pylance_path)
+    
+    #|Not intended for public use
+    #|copy_to_pylance_folder(frozen_path.joinpath("_onewire.pyi"), pylance_path)
+    
     #|Does not exist in this firmware
     #|copy_to_pylance_folder(frozen_path.joinpath("btree.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("dht.pyi"), pylance_path)
@@ -140,14 +142,15 @@ def main():
     copy_to_pylance_folder(frozen_path.joinpath("network.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ntptime.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("onewire.pyi"), pylance_path)
-    copy_to_pylance_folder(frozen_path.joinpath("_rp2.pyi"), pylance_path)
+    #|Not intended for public use
+    #|copy_to_pylance_folder(frozen_path.joinpath("_rp2.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("rp2.pyi"), pylance_path)
     # TODO: maybe transfer the asyncio stubs to the stdlib section because it's mentioned as stdlib in micropython docs
-    copy_to_pylance_folder(frozen_path.joinpath("uasyncio.pyi"), pylance_path)
+    #|Does not exist - splited into sperate folder
+    #|copy_to_pylance_folder(frozen_path.joinpath("uasyncio.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ucryptolib.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("uctypes.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ujson.pyi"), pylance_path)
-    copy_to_pylance_folder(frozen_path.joinpath("umachine.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("upip_utarfile.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("urequests.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("uwebsocket.pyi"), pylance_path)
@@ -166,7 +169,10 @@ def process_json(file):
 
 def copy_to_pylance_folder(frozen_file: Path, pylance_path: Path):
     folder_name = frozen_file.name.replace(".pyi", "")
-    os.mkdir(pylance_path.joinpath("stubs", folder_name))
+    try:
+        os.mkdir(pylance_path.joinpath("stubs", folder_name))
+    except FileExistsError:
+        print(folder_name + " already exists!")
     shutil.copyfile(frozen_file, pylance_path.joinpath("stubs", folder_name, frozen_file.name))
 
 def write_version_file(package_path: Path, destination_path: Path):
