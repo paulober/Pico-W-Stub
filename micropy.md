@@ -3,7 +3,7 @@
 ## Using the Stubs
 ### First use on your computer
 
-Having already [installed micropy-cli](https://github.com/BradenM/micropy-cli#getting-started), clone or [download](https://github.com/cpwood/Pico-Stub/archive/main.zip) this repo and issue the following command:
+Having already [installed micropy-cli](https://github.com/BradenM/micropy-cli#getting-started), clone or [download](https://github.com/paulober/Pico-W-Stub/archive/main.zip) this repo and issue the following command:
 
 ```
 micropy stubs add "<path to dist/micropy-cli folder in this repo>"
@@ -12,7 +12,7 @@ micropy stubs add "<path to dist/micropy-cli folder in this repo>"
 For example:
 
 ```
-micropy stubs add "C:\Pico-Stub\dist\micropy-cli"
+micropy stubs add "C:\Pico-W-Stub\dist\micropy-cli"
 ```
 
 If you haven't already installed [Pylint](https://www.pylint.org/), do so as follows:
