@@ -16,6 +16,3 @@ class array():
     def extend(self, *args, **kwargs) -> Any:
         ...
 
-    def decode(self, *args, **kwargs) -> Any:
-        ...
-

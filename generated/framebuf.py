@@ -13,6 +13,9 @@ class FrameBuffer():
     def blit(self, *args, **kwargs) -> Any:
         ...
 
+    def ellipse(self, *args, **kwargs) -> Any:
+        ...
+
     def fill(self, *args, **kwargs) -> Any:
         ...
 
@@ -26,6 +29,9 @@ class FrameBuffer():
         ...
 
     def pixel(self, *args, **kwargs) -> Any:
+        ...
+
+    def poly(self, *args, **kwargs) -> Any:
         ...
 
     def rect(self, *args, **kwargs) -> Any:

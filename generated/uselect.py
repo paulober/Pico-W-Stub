@@ -9,7 +9,6 @@ POLLERR = 8 # type: int
 POLLHUP = 16 # type: int
 POLLIN = 1 # type: int
 POLLOUT = 4 # type: int
-
 def poll(*args, **kwargs) -> Any:
     ...
 

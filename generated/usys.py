@@ -23,5 +23,5 @@ ps2 = '... ' # type: str
 stderr : Any ## <class 'FileIO'> = <io.FileIO 2>
 stdin : Any ## <class 'FileIO'> = <io.FileIO 0>
 stdout : Any ## <class 'FileIO'> = <io.FileIO 1>
-version = '3.4.0; MicroPython v1.19.1 on 2022-08-05' # type: str
+version = '3.4.0; MicroPython v1.19.1 on 2022-08-26' # type: str
 version_info = () # type: tuple

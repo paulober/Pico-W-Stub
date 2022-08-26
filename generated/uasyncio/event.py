@@ -25,6 +25,9 @@ class ThreadSafeFlag():
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
+    def clear(self, *args, **kwargs) -> Any:
+        ...
+
     def set(self, *args, **kwargs) -> Any:
         ...
 
