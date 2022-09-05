@@ -55,43 +55,34 @@ def main():
 
     # Copy frozen items to their respective destinations
     # stdlib
-    #|Does not exist anymore in this firmware
-    #|shutil.copytree(frozen_path.joinpath("_typeshed"), pylance_path.joinpath("stdlib", "_typeshed"))
-    #
-    #|Directory doesn't exist anymore in this firmware
-    #|shutil.copytree(frozen_path.joinpath("collections"), pylance_path.joinpath("stdlib", "collections"))
-    #
-    #|Directory doesn't exist anymore in this firmware
-    #|shutil.copytree(frozen_path.joinpath("importlib"), pylance_path.joinpath("stdlib", "importlib"))
-    #
-    #|Currently not include in firmware
-    #|shutil.copyfile(frozen_path.joinpath("_ast.pyi"), pylance_path.joinpath("stdlib", "_ast.pyi"))
+
+    # The 8 below are from python/typeshed for builtins to work
+    shutil.copytree(frozen_path.joinpath("_typeshed"), pylance_path.joinpath("stdlib", "_typeshed"))
+    shutil.copytree(frozen_path.joinpath("collections"), pylance_path.joinpath("stdlib", "collections"))
+    shutil.copytree(frozen_path.joinpath("importlib"), pylance_path.joinpath("stdlib", "importlib"))
     
-    #|Currently not include in firmware
-    #|shutil.copyfile(frozen_path.joinpath("_collections_abc.pyi"), pylance_path.joinpath("stdlib", "_collections_abc.pyi"))
-    
-    #|Currently not include in firmware
+    shutil.copyfile(frozen_path.joinpath("_ast.pyi"), pylance_path.joinpath("stdlib", "_ast.pyi"))
+    shutil.copyfile(frozen_path.joinpath("_collections_abc.pyi"), pylance_path.joinpath("stdlib", "_collections_abc.pyi"))
+    #| Not sure if this is needed
     #|shutil.copyfile(frozen_path.joinpath("_importlib_modulespec.pyi"), pylance_path.joinpath("stdlib", "_importlib_modulespec.pyi"))
-    
+    shutil.copyfile(frozen_path.joinpath("abc.pyi"), pylance_path.joinpath("stdlib", "abc.pyi"))
+    shutil.copyfile(frozen_path.joinpath("ast.pyi"), pylance_path.joinpath("stdlib", "ast.pyi"))
+    # END
+
     shutil.copyfile(frozen_path.joinpath("_thread.pyi"), pylance_path.joinpath("stdlib", "_thread.pyi"))
-    
-    #|Currently not include in firmware
-    #|shutil.copyfile(frozen_path.joinpath("abc.pyi"), pylance_path.joinpath("stdlib", "abc.pyi"))
     shutil.copyfile(frozen_path.joinpath("array.pyi"), pylance_path.joinpath("stdlib", "array.pyi"))
-    
-    #|Currently not include in firmware
-    #|shutil.copyfile(frozen_path.joinpath("ast.pyi"), pylance_path.joinpath("stdlib", "ast.pyi"))
-    
     shutil.copyfile(frozen_path.joinpath("binascii.pyi"), pylance_path.joinpath("stdlib", "binascii.pyi"))
     shutil.copyfile(frozen_path.joinpath("builtins.pyi"), pylance_path.joinpath("stdlib", "builtins.pyi"))
     shutil.copyfile(frozen_path.joinpath("cmath.pyi"), pylance_path.joinpath("stdlib", "cmath.pyi"))
-    shutil.copyfile(frozen_path.joinpath("collections.pyi"), pylance_path.joinpath("stdlib", "collections.pyi"))
     shutil.copyfile(frozen_path.joinpath("errno.pyi"), pylance_path.joinpath("stdlib", "errno.pyi"))
     shutil.copyfile(frozen_path.joinpath("gc.pyi"), pylance_path.joinpath("stdlib", "gc.pyi"))
     shutil.copyfile(frozen_path.joinpath("hashlib.pyi"), pylance_path.joinpath("stdlib", "hashlib.pyi"))
     shutil.copyfile(frozen_path.joinpath("heapq.pyi"), pylance_path.joinpath("stdlib", "heapq.pyi"))
     shutil.copyfile(frozen_path.joinpath("io.pyi"), pylance_path.joinpath("stdlib", "io.pyi"))
     shutil.copyfile(frozen_path.joinpath("math.pyi"), pylance_path.joinpath("stdlib", "math.pyi"))
+    # The 1 below is from python/typeshed for builtins to work
+    shutil.copyfile(frozen_path.joinpath("mmap.pyi"), pylance_path.joinpath("stdlib", "mmap.pyi"))
+    # END
     shutil.copyfile(frozen_path.joinpath("os.pyi"), pylance_path.joinpath("stdlib", "os.pyi"))
     shutil.copyfile(frozen_path.joinpath("random.pyi"), pylance_path.joinpath("stdlib", "random.pyi"))
     shutil.copyfile(frozen_path.joinpath("re.pyi"), pylance_path.joinpath("stdlib", "re.pyi"))
@@ -101,9 +92,10 @@ def main():
     shutil.copyfile(frozen_path.joinpath("struct.pyi"), pylance_path.joinpath("stdlib", "struct.pyi"))
     shutil.copyfile(frozen_path.joinpath("sys.pyi"), pylance_path.joinpath("stdlib", "sys.pyi"))
     shutil.copyfile(frozen_path.joinpath("time.pyi"), pylance_path.joinpath("stdlib", "time.pyi"))
-    #|Do not exist in this firmware
-    #|shutil.copyfile(frozen_path.joinpath("types.pyi"), pylance_path.joinpath("stdlib", "types.pyi"))
-    #|shutil.copyfile(frozen_path.joinpath("typing.pyi"), pylance_path.joinpath("stdlib", "typing.pyi"))
+    # The 2 below are from python/typeshed for builtins to work
+    shutil.copyfile(frozen_path.joinpath("types.pyi"), pylance_path.joinpath("stdlib", "types.pyi"))
+    shutil.copyfile(frozen_path.joinpath("typing.pyi"), pylance_path.joinpath("stdlib", "typing.pyi"))
+    # END
     shutil.copyfile(frozen_path.joinpath("uarray.pyi"), pylance_path.joinpath("stdlib", "uarray.pyi"))
     shutil.copyfile(frozen_path.joinpath("ubinascii.pyi"), pylance_path.joinpath("stdlib", "ubinascii.pyi"))
     shutil.copyfile(frozen_path.joinpath("ucollections.pyi"), pylance_path.joinpath("stdlib", "ucollections.pyi"))
@@ -142,12 +134,19 @@ def main():
     copy_to_pylance_folder(frozen_path.joinpath("network.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ntptime.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("onewire.pyi"), pylance_path)
+
     #|Not intended for public use
     #|copy_to_pylance_folder(frozen_path.joinpath("_rp2.pyi"), pylance_path)
+
     copy_to_pylance_folder(frozen_path.joinpath("rp2.pyi"), pylance_path)
+
     # TODO: maybe transfer the asyncio stubs to the stdlib section because it's mentioned as stdlib in micropython docs
     #|Does not exist - splited into sperate folder
     #|copy_to_pylance_folder(frozen_path.joinpath("uasyncio.pyi"), pylance_path)
+
+    # The 1 below is from python/typeshed for builtins to work
+    copy_to_pylance_folder(frozen_path.joinpath("typing_extensions.pyi"), pylance_path)
+    # END
     copy_to_pylance_folder(frozen_path.joinpath("ucryptolib.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("uctypes.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ujson.pyi"), pylance_path)
