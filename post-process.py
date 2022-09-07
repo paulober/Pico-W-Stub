@@ -124,7 +124,6 @@ def main():
     #|Does not exist in this firmware
     #|copy_to_pylance_folder(frozen_path.joinpath("btree.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("dht.pyi"), pylance_path)
-    copy_to_pylance_folder(frozen_path.joinpath("ds18x20.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("framebuf.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("json.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("lwip.pyi"), pylance_path)

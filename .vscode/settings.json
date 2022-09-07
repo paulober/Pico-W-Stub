@@ -9,5 +9,7 @@
     "python.analysis.extraPaths": [
         "dist/pylance/stubs",
         ".vscode/Pico-W-Stub/stubs"
-    ]
+    ],
+    "picowgo.syncFolder": "board",
+    "picowgo.openOnStart": true
 }

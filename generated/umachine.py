@@ -296,10 +296,16 @@ class UART():
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
+    def flush(self, *args, **kwargs) -> Any:
+        ...
+
     def init(self, *args, **kwargs) -> Any:
         ...
 
     def sendbreak(self, *args, **kwargs) -> Any:
+        ...
+
+    def txdone(self, *args, **kwargs) -> Any:
         ...
 
 
