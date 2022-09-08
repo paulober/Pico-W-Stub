@@ -39,6 +39,7 @@
 {"file": "/stubs/micropython-v1_19_1-rp2/uctypes.py", "module": "uctypes"},
 {"file": "/stubs/micropython-v1_19_1-rp2/ujson.py", "module": "ujson"},
 {"file": "/stubs/micropython-v1_19_1-rp2/socket.py", "module": "socket"},
+{"file": "/stubs/micropython-v1_19_1-rp2/ds18x20.py", "module": "ds18x20"},
 {"file": "/stubs/micropython-v1_19_1-rp2/gc.py", "module": "gc"},
 {"file": "/stubs/micropython-v1_19_1-rp2/machine.py", "module": "machine"},
 {"file": "/stubs/micropython-v1_19_1-rp2/uhashlib.py", "module": "uhashlib"},
