@@ -1,7 +1,3 @@
-# ! IMPORTANT
-
-This repository is based on [github.com/cpwood/Pico-Stub](https://github.com/cpwood/Pico-Stub).
-
 # Pico-W-Stub
 
 This repository contains MicroPython stubs for the Raspberry Pi Pico W, allowing you to benefit from Python code linting and autocompletion in Visual Studio Code.
@@ -10,12 +6,14 @@ This repository contains MicroPython stubs for the Raspberry Pi Pico W, allowing
 
 # Disclaimer
 
-Most documentation snippets are from [Micropython Docs](https://docs.micropython.org/en/v1.19.1/).
+- Most documentation snippets are from [Micropython Docs](https://docs.micropython.org/en/v1.19.1/).
 Many thanks to Damien P.George, Paul Sokolovsky, and their other contributors. The version i uses was last updated on 09. August 2022.
+
+- This repository is based on [github.com/cpwood/Pico-Stub](https://github.com/cpwood/Pico-Stub).
 
 ## Using the Stubs
 
-The easiest way to use these stubs is by installing the [Pico-Go extension]() and then choosing `Pico-Go > Configure project` from the command palette. This will configure your project for auto-completion and linting. Linting is performed by [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance).
+The easiest way to use these stubs is by installing the [Pico-W-Go extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) and then choosing `Pico-W-Go > Configure project` from the command palette. This will configure your project for auto-completion and linting. Linting is performed by [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance).
 
 Alternatively, if you'd prefer to use [Micropy CLI](https://github.com/BradenM/micropy-cli) with [Pylint](https://www.pylint.org/), follow [these instructions](micropy.md#using-the-stubs).
 
