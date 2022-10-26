@@ -20,10 +20,10 @@ class Response():
         ...
 
     text : Any ## <class 'property'> = <property>
+    content : Any ## <class 'property'> = <property>
     def json(self, *args, **kwargs) -> Any:
         ...
 
-    content : Any ## <class 'property'> = <property>
 def request(*args, **kwargs) -> Any:
     ...
 

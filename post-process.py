@@ -151,7 +151,7 @@ def main():
     copy_to_pylance_folder(frozen_path.joinpath("uctypes.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ujson.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("umachine.pyi"), pylance_path)
-    copy_to_pylance_folder(frozen_path.joinpath("upip_utarfile.pyi"), pylance_path)
+    #copy_to_pylance_folder(frozen_path.joinpath("upip_utarfile.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("urequests.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("uwebsocket.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("websocket.pyi"), pylance_path)

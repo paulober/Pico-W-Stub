@@ -56,7 +56,6 @@
 {"file": "/stubs/micropython-v1_19_1-rp2/builtins.py", "module": "builtins"},
 {"file": "/stubs/micropython-v1_19_1-rp2/array.py", "module": "array"},
 {"file": "/stubs/micropython-v1_19_1-rp2/uio.py", "module": "uio"},
-{"file": "/stubs/micropython-v1_19_1-rp2/upip_utarfile.py", "module": "upip_utarfile"},
 {"file": "/stubs/micropython-v1_19_1-rp2/re.py", "module": "re"},
 {"file": "/stubs/micropython-v1_19_1-rp2/collections.py", "module": "collections"},
 {"file": "/stubs/micropython-v1_19_1-rp2/ure.py", "module": "ure"},
