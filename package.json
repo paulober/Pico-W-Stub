@@ -1,6 +1,6 @@
 {
   "name": "pico-w-stub",
-  "version": "1.19.1-780",
+  "version": "1.19.1-796",
   "description": "MicroPython stubs for the Raspberry Pi Pico W",
   "scripts": {
     "post-process": "python3 post-process.py"
