@@ -17,6 +17,8 @@ class Response():
 
     def close(self) -> None:
         ...
+    
+    status_code: int
 
     @property
     def text(self) -> str|None:
