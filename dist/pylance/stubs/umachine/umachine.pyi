@@ -1793,7 +1793,7 @@ def deepsleep(time_ms: int|None = None) -> None:
     ...
 
 
-def lightleep(time_ms: int|None = None) -> None:
+def lightsleep(time_ms: int|None = None) -> None:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -1848,11 +1848,31 @@ def idle():
     """
     ...
 
+class mem:
+    """Don't use this class/type! It's only for type annotations. And does not exist at runtime!"""
+    def __getitem__(self, address: int) -> int: ...
+    def __setitem__(self, address: int, value: int) -> None: ...
 
-mem16 = None
-mem32 = None
-mem8 = None
+mem16: mem
+"""Read/write 16 bits of memory.
 
+Use subscript notation `[...]` to index these objects with the address of interest. 
+Note that the address is the byte address, regardless of the size of memory being accessed.
+"""
+
+mem32: mem
+"""Read/write 32 bits of memory.
+
+Use subscript notation `[...]` to index these objects with the address of interest. 
+Note that the address is the byte address, regardless of the size of memory being accessed.
+"""
+
+mem8: mem
+"""Read/write 8 bits of memory.
+
+Use subscript notation `[...]` to index these objects with the address of interest. 
+Note that the address is the byte address, regardless of the size of memory being accessed.
+"""
 
 def reset():
     """
