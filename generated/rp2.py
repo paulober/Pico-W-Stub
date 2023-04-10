@@ -1,7 +1,7 @@
 """
-Module: 'rp2' on micropython-v1.19.1-915-rp2
+Module: 'rp2' on micropython-v1.19.1-rp2
 """
-# MCU: {'ver': 'v1.19.1-915', 'build': '915', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
+# MCU: {'ver': 'v1.19.1', 'build': '1009', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.5.7
 from typing import Any
 
@@ -85,6 +85,9 @@ class StateMachine():
         ...
 
 def asm_pio_encode(*args, **kwargs) -> Any:
+    ...
+
+def bootsel_button(*args, **kwargs) -> Any:
     ...
 
 def country(*args, **kwargs) -> Any:
