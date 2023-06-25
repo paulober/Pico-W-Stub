@@ -1,6 +1,6 @@
 {
   "name": "pico-w-stub",
-  "version": "1.20.0-1",
+  "version": "1.20.0-2",
   "author": "paulober",
   "license": "Apache-2.0",
   "description": "MicroPython stubs for the Raspberry Pi Pico W",
