@@ -1587,6 +1587,7 @@ class Timer:
         /,
         *,
         mode: int = PERIODIC,
+        freq: float|None = None,
         period: int = -1,
         callback: Callable[["Timer"], None] |None = None,
     ):
@@ -1601,8 +1602,8 @@ class Timer:
     def init(
         self,
         *,
-        freq: float|None = None,
         mode: int = PERIODIC,
+        freq: float|None = None,
         period: int = -1,
         callback: Callable[["Timer"], None]|None = None,
     ) -> None:
