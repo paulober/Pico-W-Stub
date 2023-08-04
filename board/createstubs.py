@@ -1,3 +1,10 @@
+"""
+MIT License
+
+Copyright (c) 2020-2023 Jos Verlinde
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software and stubs.
+"""
 e='micropython'
 d='esp32'
 c='pyb'

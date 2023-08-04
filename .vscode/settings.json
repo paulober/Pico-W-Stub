@@ -10,6 +10,6 @@
         "dist/pylance/stubs",
         ".vscode/Pico-W-Stub/stubs"
     ],
-    "picowgo.syncFolder": "board",
-    "picowgo.openOnStart": true
+    "micropico.syncFolder": "board",
+    "micropico.openOnStart": true
 }
