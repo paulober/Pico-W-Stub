@@ -1,1 +1,1 @@
-from .ucollections import *
+from ucollections import *
