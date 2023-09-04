@@ -1,15 +1,4 @@
 {
-    "python.linting.enabled": true,
-    "python.analysis.typeshedPaths": [
-        "dist/pylance",
-        ".vscode/Pico-W-Stub"
-    ],
-    "python.languageServer": "Pylance",
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.extraPaths": [
-        "dist/pylance/stubs",
-        ".vscode/Pico-W-Stub/stubs"
-    ],
-    "micropico.syncFolder": "board",
-    "micropico.openOnStart": true
+  "micropico.syncFolder": "board",
+  "micropico.openOnStart": true
 }

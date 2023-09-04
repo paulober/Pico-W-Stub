@@ -15,6 +15,11 @@ def main():
     micropy_path = dist_path.joinpath("micropy-cli")
     pylance_path = dist_path.joinpath("pylance")
 
+    if os.path.exists(dist_path):
+            shutil.rmtree(dist_path)
+            
+    os.mkdir(dist_path)
+
     print('  Processing Micropy-CLI ...')
 
     if os.path.exists(micropy_path):
@@ -84,6 +89,7 @@ def main():
     shutil.copyfile(frozen_path.joinpath("mmap.pyi"), pylance_path.joinpath("stdlib", "mmap.pyi"))
     # END
     shutil.copyfile(frozen_path.joinpath("os.pyi"), pylance_path.joinpath("stdlib", "os.pyi"))
+    shutil.copyfile(frozen_path.joinpath("platform.pyi"), pylance_path.joinpath("stdlib", "platform.pyi"))
     shutil.copyfile(frozen_path.joinpath("random.pyi"), pylance_path.joinpath("stdlib", "random.pyi"))
     shutil.copyfile(frozen_path.joinpath("re.pyi"), pylance_path.joinpath("stdlib", "re.pyi"))
     shutil.copyfile(frozen_path.joinpath("select.pyi"), pylance_path.joinpath("stdlib", "select.pyi"))
@@ -104,6 +110,7 @@ def main():
     shutil.copyfile(frozen_path.joinpath("uheapq.pyi"), pylance_path.joinpath("stdlib", "uheapq.pyi"))
     shutil.copyfile(frozen_path.joinpath("uio.pyi"), pylance_path.joinpath("stdlib", "uio.pyi"))
     shutil.copyfile(frozen_path.joinpath("uos.pyi"), pylance_path.joinpath("stdlib", "uos.pyi"))
+    shutil.copyfile(frozen_path.joinpath("uplatform.pyi"), pylance_path.joinpath("stdlib", "uplatform.pyi"))
     shutil.copyfile(frozen_path.joinpath("urandom.pyi"), pylance_path.joinpath("stdlib", "urandom.pyi"))
     shutil.copyfile(frozen_path.joinpath("ure.pyi"), pylance_path.joinpath("stdlib", "ure.pyi"))
     shutil.copyfile(frozen_path.joinpath("uselect.pyi"), pylance_path.joinpath("stdlib", "uselect.pyi"))
@@ -112,11 +119,12 @@ def main():
     shutil.copyfile(frozen_path.joinpath("ustruct.pyi"), pylance_path.joinpath("stdlib", "ustruct.pyi"))
     shutil.copyfile(frozen_path.joinpath("usys.pyi"), pylance_path.joinpath("stdlib", "usys.pyi"))
     shutil.copyfile(frozen_path.joinpath("utime.pyi"), pylance_path.joinpath("stdlib", "utime.pyi"))
-    shutil.copyfile(frozen_path.joinpath("uzlib.pyi"), pylance_path.joinpath("stdlib", "uzlib.pyi"))
-    shutil.copyfile(frozen_path.joinpath("zlib.pyi"), pylance_path.joinpath("stdlib", "zlib.pyi"))
+    #shutil.copyfile(frozen_path.joinpath("uzlib.pyi"), pylance_path.joinpath("stdlib", "uzlib.pyi"))
+    #shutil.copyfile(frozen_path.joinpath("zlib.pyi"), pylance_path.joinpath("stdlib", "zlib.pyi"))
 
     # stubs
     shutil.copytree(frozen_path.joinpath("uasyncio"), pylance_path.joinpath("stubs", "uasyncio"))
+    shutil.copytree(frozen_path.joinpath("aioble"), pylance_path.joinpath("stubs", "aioble"))
     
     #|Not intended for public use
     #|copy_to_pylance_folder(frozen_path.joinpath("_onewire.pyi"), pylance_path)
@@ -134,6 +142,8 @@ def main():
     copy_to_pylance_folder(frozen_path.joinpath("network.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ntptime.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("onewire.pyi"), pylance_path)
+    copy_to_pylance_folder(frozen_path.joinpath("websocket.pyi"), pylance_path)
+    copy_to_pylance_folder(frozen_path.joinpath("bluetooth.pyi"), pylance_path)
 
     #|Not intended for public use
     #|copy_to_pylance_folder(frozen_path.joinpath("_rp2.pyi"), pylance_path)
@@ -154,7 +164,7 @@ def main():
     #copy_to_pylance_folder(frozen_path.joinpath("upip_utarfile.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("urequests.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("uwebsocket.pyi"), pylance_path)
-    copy_to_pylance_folder(frozen_path.joinpath("websocket.pyi"), pylance_path)
+    copy_to_pylance_folder(frozen_path.joinpath("ubluetooth.pyi"), pylance_path)
 
 def process_json(file):
     data = None
