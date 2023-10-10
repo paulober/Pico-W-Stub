@@ -142,6 +142,7 @@ def main():
     copy_to_pylance_folder(frozen_path.joinpath("network.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("ntptime.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("onewire.pyi"), pylance_path)
+    copy_to_pylance_folder(frozen_path.joinpath("requests.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("websocket.pyi"), pylance_path)
     copy_to_pylance_folder(frozen_path.joinpath("bluetooth.pyi"), pylance_path)
 
