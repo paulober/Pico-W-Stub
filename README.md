@@ -1,4 +1,4 @@
-# Pico-W-Stub
+# Pico-W-Stub \[deprecated\]
 
 This repository contains MicroPython stubs for the Raspberry Pi Pico W, allowing you to benefit from Python code linting and autocompletion in Visual Studio Code.
 
@@ -7,7 +7,7 @@ This repository contains MicroPython stubs for the Raspberry Pi Pico W, allowing
 # Disclaimer
 
 - Most documentation snippets are from [Micropython Docs](https://docs.micropython.org/en/v1.19.1/).
-Many thanks to Damien P.George, Paul Sokolovsky, and their other contributors. The version i uses was last updated on 09. August 2022.
+  Many thanks to Damien P.George, Paul Sokolovsky, and their other contributors. The version i uses was last updated on 09. August 2022.
 
 - This repository is based on [github.com/cpwood/Pico-Stub](https://github.com/cpwood/Pico-Stub).
 
@@ -29,8 +29,8 @@ The stubs _aren't_ perfect and issues and pull requests are welcomed to improve 
 
 ## Generating the Stubs
 
-This isn't something you *need* to do; the stubs are already included in this repository within the `/generated` directory.
+This isn't something you _need_ to do; the stubs are already included in this repository within the `/generated` directory.
 
 However, if you want to do this yourself, you can do so using [Micropython-Stubber](https://github.com/Josverl/micropython-stubber).
 
-* [Using Micropython-Stubber](micropython-stubber.md#generating-the-stubs)
+- [Using Micropython-Stubber](micropython-stubber.md#generating-the-stubs)
